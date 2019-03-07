@@ -17,16 +17,16 @@ class AuthRoute extends Component {
                         // 有登录信息
                     } else {
                         // 无登录信息
-                        console.log(this.props.history)
+                        // console.log(this.props.history)
                         this.props.history.push('/login')
                     }
-                        console.log(res.data)
+                        // console.log(res.data)
                 }
             })
     }
     render() {
         return (
-            <div>判断跳转
+            <div>
             </div>
         )
     }

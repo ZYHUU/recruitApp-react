@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
@@ -31,16 +31,17 @@ function errorMsg(msg) {
 }
 
 
-export function register({user,pwd,type}) {
+export function register({user,pwd,repeatpwd,type}) {
     if (!user || !pwd || !type) {
         return errorMsg('用户名密码必须输入')
     }
-    // if (pwd !== repeatpwd) {
-    //     return errorMsg('输入密码不一致')
-    // }
+    if (pwd !== repeatpwd) {
+        return errorMsg('输入密码不一致')
+    }
+    // redux-thunk支持返回函数写法(解决异步)
     return dispatch => {
-        Axios.post('/user/register', {user,pwd,type})
-        .then(res => {
+        axios.post('/user/register', {user,pwd,type})
+            .then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 dispatch(registerSuccess({user,pwd,type}))
             } else {

@@ -15,6 +15,7 @@
     "babel-plugin-named-asset-import": "^0.3.1",
     "babel-preset-react-app": "^7.0.1",
     "bfj": "6.1.1",
+    "body-parser": "^1.18.3",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "cookie-parser": "^1.4.4",
     "css-loader": "1.0.0",
@@ -135,8 +136,18 @@
           "style": "css"
         }
       ],
-      ["@babel/plugin-proposal-decorators", { "legacy": true }],
-      ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
     ]
   },
   "devDependencies": {
