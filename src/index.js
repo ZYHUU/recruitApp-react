@@ -11,16 +11,16 @@ import AuthRoute from './component/authroute/authroute'
 import reducers from './reducer'
 import './config'
 
-// const store = createStore(reducers, compose(
-//     applyMiddleware(thunk),
-//     window.devToolsExtension?window.devToolsExtension():f=>f
-// ))
+const store = createStore(reducers, compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension?window.devToolsExtension():f=>f
+))
 function Boss() {
     return <h3>BOSS</h3>
 }
 
 ReactDOM.render(
-    (
+    (<Provider store={store}>
         <BrowserRouter>
             <div>
                 <AuthRoute></AuthRoute>
@@ -29,7 +29,7 @@ ReactDOM.render(
                 <Route path='/register' component={Register}></Route>
             </div>
         </BrowserRouter>
-   )
+    </Provider>)
     
     
     , document.getElementById('root'));

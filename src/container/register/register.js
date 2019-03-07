@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 import { List, InputItem, Radio, WhiteSpace, Button} from 'antd-mobile'
 import Logo from './../../component/logo/logo';
+import { connect } from 'react-redux'
+import { resisger } from '../../redux/user.redux'
 
+@connect(
+    state=>state.user,
+    {resisger}
+)
 class Register extends Component{
     constructor(props){
         super(props)
         this.state = {
-            type: 'genius'  // or boss
+            type: 'genius',  // or boss
+            user: '',
+            pwd: '',
+            repeatpwd: ''
         }
+        this.handleRegister = this.handleRegister.bind(this)
+    }
+    handleChange(key,val) {
+        this.setState({
+            [key]: val
+        })
+    }
+    handleRegister() {
+        this.props.regisger(this.state)
     }
     render() {
         const RadioItem = Radio.RadioItem;
@@ -15,11 +33,21 @@ class Register extends Component{
             <div>
                 <Logo></Logo>
                 <List>
-                    <InputItem>用户</InputItem>
+                    <InputItem
+                        onChange={v=>this.handleChange('user',v)}
+                    >
+                    用户
+                    </InputItem>
                     <WhiteSpace/>
-                    <InputItem>密码</InputItem>
+                    <InputItem
+                        onChange={v=>this.handleChange('pwd',v)}
+                    >
+                    密码</InputItem>
                     <WhiteSpace/>
-                    <InputItem>确认密码</InputItem>
+                    <InputItem
+                        onChange={v=>this.handleChange('repeatpwd',v)}
+                    >
+                    确认密码</InputItem>
                     <WhiteSpace/>
                     <RadioItem checked={this.state.type==='genius'}>
                     牛人
