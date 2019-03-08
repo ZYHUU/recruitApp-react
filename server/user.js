@@ -1,6 +1,7 @@
 const express = require('express')
 const Router = express.Router()
 const model = require('./model')
+const utils = require('utility')
 const User = model.getModel('user')
 
 Router.get('/list', function (req, res) {
@@ -18,7 +19,7 @@ Router.post('/register', function (req, res) {
             return res.json({code:1,msg:'用户名重复'})
         }
         // 用户名不存在则执行创建操作
-        User.create({ user, pwd, type }, function (err, doc) {
+        User.create({ user, pwd:md5Pwd(pwd), type }, function (err, doc) {
             if (err) {
                 return res.json({code:1,msg:'后端出错了'})
             }
@@ -29,6 +30,12 @@ Router.post('/register', function (req, res) {
 Router.get('/info', function (req, res) {
     return res.json({code:1})
 })
+
+// 实现多重加密
+function md5Pwd(pwd) {
+    const salt = 'zyh_is_rmm_4324x322!@UHb-FE~'
+    return  utils.md5(utils.md5(pwd+salt))
+}
 
 // CommonJS 暴露目标
 module.exports = Router
