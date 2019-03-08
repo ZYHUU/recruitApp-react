@@ -35,7 +35,7 @@ class Register extends Component {
     return (
       <div>
         {/* 如果存在跳转路径，跳转到相应页面 */}
-        {this.props.redirectTTo ? (
+        {this.props.redirectTo ? (
           <Redirect to={this.props.redirectTo} />
         ) : null}
         <Logo />
