@@ -4,8 +4,6 @@ import {
 } from '../util'
 
 const	AUTH_SUCCESS = 'AUTH_SUCCESS'
-// const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-// const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
 
@@ -43,26 +41,15 @@ export function user(state = initState, action) {
 	}
 }
 
-function authSuccess(data) {
+function authSuccess(obj) {
+	// 排除密码
+	const {pwd, ...data } = obj
 	return {
 		type: AUTH_SUCCESS,
 		payload: data
 	}
 }
 
-// function loginSuccess(data) {
-// 	return {
-// 		type: LOGIN_SUCCESS,
-// 		payload: data
-// 	}
-// }
-
-// function registerSuccess(data) {
-// 	return {
-// 		type: REGISTER_SUCCESS,
-// 		payload: data
-// 	}
-// }
 
 function errorMsg(msg) {
 	return {

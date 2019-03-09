@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Grid, List } from "antd-mobile";
-
+import PropTypes from 'prop-types'
 class AvatarSelector extends Component {
+  // prop-types进行类型校验(function并必传)
+  static propTypes = {
+    selectAvatar: PropTypes.func.isRequired
+  }
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,7 +20,7 @@ class AvatarSelector extends Component {
     const gridHeader = this.state.icon ? (
       <div>
         <span>已选择头像</span>
-        <img style={{ width: 20 }} src={this.state.icon} />
+        <img style={{ width: 20 }} src={this.state.icon} alt=''/>
       </div>
     ) : (
       <div>请选择头像</div>
