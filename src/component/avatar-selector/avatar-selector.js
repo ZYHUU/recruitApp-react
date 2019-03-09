@@ -21,7 +21,6 @@ class AvatarSelector extends Component {
     ) : (
       <div>请选择头像</div>
     );
-    console.log(avatarList);
     return (
       <div>
         <List renderHeader={() => gridHeader}>
