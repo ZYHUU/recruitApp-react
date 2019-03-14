@@ -14,15 +14,8 @@ class Boss extends Component{
             data: []
         }
     }
-    componentWillMount() {
+    componentDidMount() {
         this.props.getUserList('genius')
-        axios.get('/user/list?type='+type)
-        .then(res => {
-            if (res.data.code === 0) {
-                console.log(res.data.data)
-           dispatch(userList(res.data.data))
-        }
-    })
     }
     render() {
         const Header = Card.Header;
