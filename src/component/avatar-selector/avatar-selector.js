@@ -17,17 +17,17 @@ class AvatarSelector extends Component {
         icon: require(`../../assets/img/${v}.png`),
         text: v
       }));
-    const gridHeader = this.state.icon ? (
+    const gridHeader = this.state.icon  ? (
       <div>
         <span>已选择头像</span>
         <img style={{ width: 20 }} src={this.state.icon} alt=''/>
       </div>
     ) : (
-      <div>请选择头像</div>
+      <div>请选择头像</div> 
     );
     return (
       <div>
-        <List renderHeader={() => gridHeader}>
+        <List renderHeader={() => gridHeader} style={{marginTop: '50px'}}>
           <Grid
             data={avatarList}
             columnNum={5}
