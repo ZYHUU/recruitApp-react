@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { Result, List, WhiteSpace, Modal, Button } from 'antd-mobile'
 import browserCookie from 'browser-cookies'
 @connect(
-    state => state.user
-    
+    state => state.user   
 )
 class User extends Component{
     constructor(props) {
@@ -12,7 +11,7 @@ class User extends Component{
         this.state = {
 
         }
-        // this.logout = this.logout.bind(this)
+        this.logout = this.logout.bind(this)
     }
     logout() {
         // 删除cookie
@@ -20,8 +19,7 @@ class User extends Component{
         browserCookie.erase('userid')
         window.location.href = window.location.href;
     }
-    handelClick = () => {
-        debugger
+    handelClick(){
         console.log('1111')
     }
     render() {
@@ -47,7 +45,7 @@ class User extends Component{
                 <WhiteSpace></WhiteSpace>    
                 <Button type="primary" onClick={() => this.logout()}>退出登录</Button>
             </div>
-        ):null
+        ): <div style={{ marginTop: '100px' }} onClick={this.handelClick}>点击</div>
     }
 }
 export default User

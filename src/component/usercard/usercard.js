@@ -5,6 +5,7 @@ class UserCard extends Component{
     static protype = {
         userlist: PropTypes.array.isRequired
     }
+
     render() {
         const Header = Card.Header;
         const Body = Card.Body
