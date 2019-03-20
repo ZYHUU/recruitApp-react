@@ -7,6 +7,7 @@ class NavLinkBar extends Component{
     static propTypes = {
         data: PropTypes.array.isRequired
     }
+
     render() {
         const navList = this.props.data.filter(v=>!v.hide)
         const { pathname } = this.props.location
@@ -24,10 +25,10 @@ class NavLinkBar extends Component{
                             this.props.history.push(v.path)
                         }}
                     >
-                     {/*selectedIcon={{uri: require(`../../assets/img/${v.icon}-active.png`)}}*/}
+                    {/*selectedIcon={{uri: require(`../../assets/img/${v.icon}-active.png`)}}*/}
                     </TabBar.Item>
                 ))}
-            </TabBar>
+            </TabBar>           
         )
     }
 }

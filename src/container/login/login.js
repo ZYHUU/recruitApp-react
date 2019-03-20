@@ -39,7 +39,7 @@ class Login extends Component {
         return (
             <div>
                 {/* 如果存在跳转路径，跳转到相应页面 */}
-                {this.props.redirectTo ? (
+                {this.props.redirectTo && this.props.redirectTo !== '/login'? (
                     <Redirect to={this.props.redirectTo} />
                 ) : null}
                 <Logo></Logo>

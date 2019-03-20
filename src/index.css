@@ -16,3 +16,6 @@
 .page-content{
     padding: 45px 5px;
 }
+.am-tab-bar{
+    height: 60px !important;
+}

@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Result, List, WhiteSpace, Modal, Button } from 'antd-mobile'
 import browserCookie from 'browser-cookies'
+import { logoutSubmit } from '../../redux/user.redux'
+import { Redirect } from 'react-router-dom'
 @connect(
-    state => state.user   
+    state => state.user,
+    {logoutSubmit}
 )
 class User extends Component{
     constructor(props) {
@@ -14,22 +17,29 @@ class User extends Component{
         this.logout = this.logout.bind(this)
     }
     logout() {
+        const alert = Modal.alert
+        alert('注销', '确认退出登录吗？？', [
+            { text: '取消', onPress: () => console.log('cancel') },
+            {
+                text: '确认', onPress: () => {
+                browserCookie.erase('userid')
+                this.props.logoutSubmit()
+            }}
+        ])
         // 删除cookie
         console.log('logout')
-        browserCookie.erase('userid')
-        window.location.href = window.location.href;
+        // browserCookie.erase('userid')
+        // window.location.href = window.location.href;
     }
-    handelClick(){
-        console.log('1111')
-    }
+  
     render() {
         const props = this.props;
         const Item = List.Item;
         const Brief = Item.Brief
-        return props.user?(
-            <div onClick={this.handelClick}>
+        return props.user ? (
+            <div style={{"height": "10%"}}>    
                 <Result
-                    img={<img src={require(`../../assets/img/${props.avatar}.png`)} style={{width: '50px'}} alt="" />}
+                    img={<img src={require(`../../assets/img/${props.avatar}.png`)} alt="" />}
                     title={props.user}
                     message={props.type === 'boss' ? props.company : null}
                 />
@@ -45,7 +55,7 @@ class User extends Component{
                 <WhiteSpace></WhiteSpace>    
                 <Button type="primary" onClick={() => this.logout()}>退出登录</Button>
             </div>
-        ): <div style={{ marginTop: '100px' }} onClick={this.handelClick}>点击</div>
+        ): <Redirect to={this.props.redirectTo} />
     }
 }
 export default User
