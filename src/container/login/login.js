@@ -4,18 +4,15 @@ import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom";
 import { login } from '../../redux/user.redux'
-
+import commForm from '../../component/commForm/commForm'
 @connect(
     state => state.user,
     { login }
 )
+@commForm
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            user: '',
-            pwd: ''
-        }
         this.register = this.register.bind(this)
         this.handelLogin = this.handelLogin.bind(this)
     }
@@ -24,15 +21,9 @@ class Login extends Component {
         this.props.history.push('/register')
     }
 
-    handleChange(key, val) {
-        this.setState({
-            [key]: val
-        });
-    }
-
     // 登录
     handelLogin() {
-        this.props.login(this.state)
+        this.props.login(this.props.state)
     }
 
     render() {
@@ -48,11 +39,11 @@ class Login extends Component {
                     <List>
                         {this.props.msg ? <p className="err_msg">{this.props.msg}</p> : null}
                         <InputItem
-                            onChange={v => this.handleChange("user", v)}
+                            onChange={v => this.props.handleChange("user", v)}
                         >用户</InputItem>
                         <InputItem
                             type="password"
-                            onChange={v => this.handleChange("pwd", v)}
+                            onChange={v => this.props.handleChange("pwd", v)}
                         >密码</InputItem>
                     </List>
                     <WhiteSpace />
