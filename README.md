@@ -16,3 +16,15 @@ socket.io
 
 mongodb 数据库
 mongoose node.js环境下对mongodb数据库进行便捷操作的对象模型工具
+
+#### 下载本项目
+`git clone 'https://github.com/ZYHUU/recruitApp-react.git'`
+
+#### 项目依赖
+node.js(>= 6.0.0)
+
+#### 安装
+- 打开文件夹根目录运行`npm install`
+- 打开根目录下的 server文件,运行`node ./server.js` 
+- 打开文件夹根目录运行`npm start`
+- 访问 `localhost:9093`
